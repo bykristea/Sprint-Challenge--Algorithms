@@ -10,8 +10,9 @@ def count_th(word):
         # skips words with less than two characters
         return 0
     elif word[:2] == "th":
-        # chest to see if "th" is in the first two index
+        # checks to see if "th" is in the first two index
         return 1 + count_th(word[1:])
         # moves on to the next index after 1
     else:
         return count_th(word[1:])
+# remove first index of word without counting.
