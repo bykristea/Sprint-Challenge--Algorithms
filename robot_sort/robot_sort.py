@@ -99,17 +99,39 @@ class SortingRobot:
         Sort the robot's list.
         """
         # Bubble sort makes sense seeing as robot can only move one postion at a time sort as you go
-
+        """
+           # Set light "ON"
+           # While light is "ON"
+               # Set light "OFF"
+               # Swap list[0] (ie. pick up first item)
+               # While can move left
+                   # Move left
+                   # Until you hit the position where there are no items 
+                       # (b/c all items before this are sorted)
+                       # Drop the sorted item into the none position and stop moving left
+               # While can move right 
+                   # Move right
+                   # If at last item and holding nothing
+                       # Turn light "OFF"
+                       # Break comparing as all items sorted
+                   # Compare items
+                       # If return 1 (ie. item holding is greater than item in front)
+                           # Swap items
+                           # Set light "ON"
+           # When light off return sorted list
+           """
         self.set_light_on()
         while self.light_is_on():
+            # turn on robots light..Light means robot can do something.
             self.set_light_off()
 
             while self.can_move_right():
                 self.swap_item()
-                self.move_right()
+                self.move_right()  # checks to see if we can move to the right if true. we can move to the right and have the option to swap item
 
                 if self.compare_item() == 1:
                     self.swap_item()
+                    # if comparing items the value equals 1 its a greater item so we can swap it.
                     self.set_light_on()
 
                 self.move_left()
