@@ -121,34 +121,34 @@ class SortingRobot:
            # When light off return sorted list
            """
         self.set_light_on()
+
         while self.light_is_on():
-            # turn on robots light..Light means robot can do something.
             self.set_light_off()
 
-            while self.can_move_right():
+            if self.can_move_left() is False:  # check to see if you can move left...if you can't check for swaping item
                 self.swap_item()
-                self.move_right()  # checks to see if we can move to the right if true. we can move to the right and have the option to swap item
-
-                if self.compare_item() == 1:
-                    self.swap_item()
-                    # if comparing items the value equals 1 its a greater item so we can swap it.
-                    self.set_light_on()
-
-                self.move_left()
-                self.swap_item()
-                self.move_right()
 
             while self.can_move_left():
-                self.swap_item()
-                self.move_left()
+                self.move_left()  # if you can move left move left
 
-                if self.compare_item() == -1:
+                if self.compare_item() is None:  # you are in position 0 and holding an item you can swap otherwise break
+                    self.swap_item()
+
+                    break
+
+            while self.can_move_right():
+                self.move_right()
+
+                # if you cant move right and there is nothing to compare. turn light on robot off and break...end of list
+                if self.can_move_right() is False and self.compare_item() is None:
+                    self.set_light_off()
+
+                    break
+                # pick up item if greater than or you aren't holding an item yet
+                if self.compare_item() is None or self.compare_item() == 1:
                     self.swap_item()
                     self.set_light_on()
-
-                self.move_right()
-                self.swap_item()
-                self.move_left()
+        return
 
 
 if __name__ == "__main__":
