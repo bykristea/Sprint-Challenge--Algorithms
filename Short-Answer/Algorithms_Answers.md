@@ -14,18 +14,18 @@ b) sum = 0 --> O(1)
 for i in range(n): --> O(n)
 j = 1
 while j < n: --> 0(n)
-j \*= 2
+j \*= 2 # 
 sum += 1
 
 ANSWER: O(n^2)
-
+O(nlogn)
 c) def bunnyEars(bunnies):
 if bunnies == 0:
 return 0
 
       return 2 + bunnyEars(bunnies-1)
 
-      ^runs one function for n(bunnies). re-calls function each time decrementing by 1 until reaching 0
+      ^runs one function for n(bunnies). re-calls function each time decrementing by 1 until reaching 0--its just a for loop
 
       ANSWER: O(n)
 
